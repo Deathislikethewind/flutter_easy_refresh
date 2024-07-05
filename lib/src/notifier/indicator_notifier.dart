@@ -767,10 +767,8 @@ abstract class IndicatorNotifier extends ChangeNotifier {
   /// [result] Result of task completion.
   void _finishTask([IndicatorResult result = IndicatorResult.success]) {
     _result = result;
-    if (!_waitTaskResult && mode == IndicatorMode.processing) {
-      _setMode(IndicatorMode.processed);
-      _processing = false;
-    }
+    _setMode(IndicatorMode.processed);
+    _processing = false;
   }
 
   /// Start [clamping] animation
@@ -830,10 +828,10 @@ abstract class IndicatorNotifier extends ChangeNotifier {
               _mode = IndicatorMode.inactive;
             }
             // Trigger [Scrollable] rollback
-            if (oldMode == IndicatorMode.processing &&
-                !userOffsetNotifier.value) {
-              _resetBallistic();
-            }
+            // if (oldMode == IndicatorMode.processing &&
+            //     !userOffsetNotifier.value) {
+            _resetBallistic();
+            // }
           }
         });
       } else {
